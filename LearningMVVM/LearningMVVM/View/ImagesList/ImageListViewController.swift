@@ -44,7 +44,26 @@ class ImageListViewController: UIViewController {
     }
     
     @objc func deleteAllLocal() {
-            // To do
+        // Declare Alert message
+        let dialogMessage = UIAlertController(title: Constants.titleShowAletMessage, message: Constants.showAlertDeleteImage, preferredStyle: .alert)
+        
+        // Create OK button with action handler
+        let ok = UIAlertAction(title: Constants.buttonShowAletOK, style: .default, handler: { (action) -> Void in
+            CoreDataImage.shared.deleteData()
+            self.imageList.removeAll()
+            self.collectionView.reloadData()
+        })
+        
+        // Create Cancel button with action handlder
+        let cancel = UIAlertAction(title: Constants.buttonShowAlertCancel, style: .cancel) { (action) -> Void in
+        }
+        
+        //Add OK and Cancel button to dialog message
+        dialogMessage.addAction(ok)
+        dialogMessage.addAction(cancel)
+        
+        // Present dialog message to user
+        self.present(dialogMessage, animated: true, completion: nil)
     }
 }
 
@@ -96,6 +115,6 @@ extension ImageListViewController : ImageListViewModelDelegate {
     }
 
     func getFieldListFail(){
-        print("Get data fail!!!!!")
+        Utility.showAlert(message: Constants.showAletAPIFail, context: self)
     }
 }

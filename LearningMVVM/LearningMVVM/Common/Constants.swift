@@ -16,10 +16,12 @@ class Constants{
     // ShowAlet
     static let showAletLoginFail = "Email or Password incorrect"
     static let showAletAPIFail = "Get data fail"
+    static let showAlertDeleteImage = "Are you sure you want to delete this?"
     
     // Title ShowAlet
     static let titleShowAletMessage = "Message"
     static let buttonShowAletOK = "OK"
+    static let buttonShowAlertCancel = "Cancel"
     
     // Link API
     static let linkImage = "http://www.splashbase.co/api/v1/images/latest"
