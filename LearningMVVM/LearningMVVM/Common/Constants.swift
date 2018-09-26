@@ -23,6 +23,12 @@ class Constants{
     static let buttonShowAletOK = "OK"
     static let buttonShowAlertCancel = "Cancel"
     
+    // Name API
+    static let nameDataAPI = "DataImage"
+    static let nameDataAPILarge_url = "large_url"
+    static let nameDataAPIUrl = "url"
+    static let nameDataAPIId = "id"
+    
     // Link API
     static let linkImage = "http://www.splashbase.co/api/v1/images/latest"
     

@@ -11,18 +11,18 @@ import CoreData
 
 class CoreDataImage {
     static let shared = CoreDataImage()
-    private init() {
-    }
-    
+//    private init() {
+//    }
+//
     func saveData(list : [SplashbaseImage]) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
-        let userEntity = NSEntityDescription.entity(forEntityName: "DataImage", in: managedContext)!
+        let userEntity = NSEntityDescription.entity(forEntityName: Constants.nameDataAPI, in: managedContext)!
         
         for image in list{
             let user = NSManagedObject(entity: userEntity, insertInto: managedContext)
-            user.setValue(image.url, forKeyPath: "url")
-            user.setValue(image.large_url, forKey: "large_url")
+            user.setValue(image.url, forKeyPath: Constants.nameDataAPIUrl)
+            user.setValue(image.large_url, forKey: Constants.nameDataAPILarge_url)
             
             do {
                 try managedContext.save()
@@ -36,9 +36,9 @@ class CoreDataImage {
     func fetchData() -> [SplashbaseImage]? {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return []}
         let managedContext = appDelegate.persistentContainer.viewContext
-        let userEntity = NSEntityDescription.entity(forEntityName: "DataImage", in: managedContext)!
+        let userEntity = NSEntityDescription.entity(forEntityName: Constants.nameDataAPI, in: managedContext)!
         
-        let userFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "DataImage")
+        let userFetch = NSFetchRequest<NSFetchRequestResult>(entityName: Constants.nameDataAPI)
         //userFetch.fetchLimit = 1
         //userFetch.predicate = NSPredicate(format: "name = %@", "John")
         let users = try! managedContext.fetch(userFetch)
@@ -57,7 +57,7 @@ class CoreDataImage {
     func deleteData() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return}
         let managedContext = appDelegate.persistentContainer.viewContext
-        let userEntity = NSEntityDescription.entity(forEntityName: "DataImage", in: managedContext)!
+        let userEntity = NSEntityDescription.entity(forEntityName: Constants.nameDataAPI, in: managedContext)!
         
         let fetchRequest: NSFetchRequest<DataImage> = DataImage.fetchRequest()
         //fetchRequest.predicate = Predicate.init(format: "profileID==\(withID)")
